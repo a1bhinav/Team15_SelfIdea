@@ -1,10 +1,11 @@
 import React from "react";
-import HelloWorld from "./HelloWorld"; // Import the HelloWorld component
-
+import HelloWorld from "./components/HelloWorld"; // Import the HelloWorld component
+import PdfParser from "./components/PdfParser";
 const App: React.FC = () => {
   return (
     <div>
-      <HelloWorld /> {/* Render the HelloWorld component */}
+      <HelloWorld />
+      <PdfParser />
     </div>
   );
 };
