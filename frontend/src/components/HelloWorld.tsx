@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const HelloWorld: React.FC = () => {
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>(""); // To store the result from the hello api call
 
   useEffect(() => {
     const fetchMessage = async () => {
