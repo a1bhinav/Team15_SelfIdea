@@ -1,9 +1,10 @@
 import express from "express"; 
-import dotenv from "dotenv"; // read secrets and enviroment variables from the .env file
+import dotenv from "dotenv"; // read secrets and environment variables from the .env file
 import mongoose from "mongoose"; // a third-party library for MongoDB,
 import cors from "cors";
 
-import routes from "./routes";
+import helloRouter from "./routes/helloRouter";
+import pdfRouter from "./routes/pdfRouter";
 
 dotenv.config(); // Load .env file with mongodb secret
 
@@ -31,7 +32,8 @@ mongoose
   });
 
 // Routes
-app.use("/api", routes);
+app.use("/api", helloRouter);
+app.use("/api", pdfRouter);
 
 // Start the server
 app.listen(PORT, () => {
