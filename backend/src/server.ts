@@ -1,17 +1,25 @@
-import express from "express";
-import dotenv from "dotenv";
-import mongoose from "mongoose";
+import express from "express"; 
+import dotenv from "dotenv"; // read secrets and enviroment variables from the .env file
+import mongoose from "mongoose"; // a third-party library for MongoDB,
 import cors from "cors";
-import routes from "./routes"; // We'll create this next
 
-dotenv.config(); // Load .env file
+import routes from "./routes";
+
+dotenv.config(); // Load .env file with mongodb secret
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors()); // Enable CORS for cross-origin requests
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"], // Allows the frontend to send requests with the Content-Type header. Added for application/pdf files
+    // see https://www.geeksforgeeks.org/express-js-express-urlencoded-function/ for more information
+  })
+);
 app.use(express.json()); // Parse JSON bodies
+app.use(express.urlencoded({ extended: true })); //parse URL-encoded form data
 
 // MongoDB Connection
 mongoose
