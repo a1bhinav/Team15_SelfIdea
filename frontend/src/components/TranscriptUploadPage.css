@@ -1,0 +1,95 @@
+.transcript-upload-container {
+    display: flex;
+    font-family: "Lora", serif; 
+    margin: 0;
+    width: 100vw;  
+    height: 100vh;
+  }
+  
+  .transcript-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    text-align: center;
+    position: relative; 
+  }
+  
+  .centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+
+  .transcript-title {
+    color: #212721;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 300;
+  }
+  
+  .red-text {
+    color: #881c1c;
+  }
+  
+  .transcript-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .upload-box {
+    border: 1px dashed #505759;
+    border-radius: 444px;
+    padding: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .upload-label {
+    display: block;
+    color: #505759;
+    font-size: 1rem;
+  }
+  
+  .file-input {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    background-color: #881c1c;
+    color: #fff;
+    border: none;
+    border-radius: 444px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .submit-button:hover {
+    background-color: #6d1414;
+  }
+  
+
+  .transcript-instructions {
+    position: absolute;
+    bottom: 20rem;  
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    font-size: large;
+    color: #212721;
+    white-space: nowrap;
+  }
+  
