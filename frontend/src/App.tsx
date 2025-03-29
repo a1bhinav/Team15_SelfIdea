@@ -2,6 +2,8 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 import TranscriptUploadPage from "./components/TranscriptUploadPage";
+import TranscriptReviewPage from "./components/TranscriptReviewPage";
+
 
 const router = createBrowserRouter([
   {
@@ -12,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/transcript",
     element: <TranscriptUploadPage />,
+  },
+  {
+    path: "/transcript-review",
+    element: <TranscriptReviewPage />,
   }
 ]);
 
