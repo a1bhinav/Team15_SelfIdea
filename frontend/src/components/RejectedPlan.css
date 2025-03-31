@@ -1,0 +1,50 @@
+.rejected-plan-container {
+    display: flex;
+    flex-direction: column;
+    font-family: "Lora", serif;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  .rejected-plan-content {
+    flex: 1;
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: 10rem;
+  }
+  
+  .rejected-plan-title {
+    color: #212721;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  
+  .rejected-plan-message {
+    font-size: 1.2rem;
+    color: #212721;
+    margin-bottom: 2rem;
+  }
+  
+  .rejected-plan-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .try-again-button {
+    background-color: #881c1c;
+    color: #fff;
+    border: none;
+    border-radius: 444px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .try-again-button:hover {
+    background-color: #6d1414;
+  }
+  

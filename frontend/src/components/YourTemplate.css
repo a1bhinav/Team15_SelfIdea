@@ -1,0 +1,130 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lora", serif; 
+  }
+
+.your-template-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+  }
+  
+  .your-template-content {
+    flex: 1;
+    padding: 2rem 1rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .your-template-title {
+    color: #212721;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 300;
+    margin-top: 10rem;
+  }
+  
+  .semester-controls {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .semester-button {
+    background-color: #881c1c;
+    color: #fff;
+    border-radius: 444px;
+
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .semester-button:hover {
+    background-color: #6d1414;
+    border: #6d1414;
+  }
+  
+  .template-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 2rem;
+  }
+  
+  .template-block {
+    background-color: #fff;
+    border: 4px #505759;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .semester-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #212721;
+  }
+  
+  .template-dropdown {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: "Lora", serif;
+  }
+  
+  .template-dropdown:last-child {
+    margin-bottom: 0.5rem;
+  }
+  
+  .course-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .course-button {
+    background-color: #fff;
+    color: #881c1c;
+    border-radius: 444px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  
+  .course-button:hover {
+    background-color: #ddd;
+    border: #ddd;
+  }
+  
+  .template-submit-button {
+    background-color: #881c1c;
+    color: #fff;
+    border: none;
+    border-radius: 444px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+
+  }
+  
+  .template-submit-button:hover {
+    background-color: #6d1414;
+  }
+  
