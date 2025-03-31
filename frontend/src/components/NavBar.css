@@ -1,0 +1,42 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+  
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  
+    z-index: 999; /*(keeps the navbar on top of other elements)*/
+  
+    margin-top: 1.5rem;
+  }
+  
+  .navbar-brand {
+    font-family: "Lora", serif;
+    font-size: 2.5rem;
+    color: #881c1c; 
+    font-weight: bold;
+    margin-left: 1rem;
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 2.4rem;
+    margin-right: 1rem;
+  }
+  
+  .navbar-links a {
+    color: #212721;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-family: "Lora", serif;
+    font-weight: 100;
+  }
+  
+  .navbar-links a:hover {
+    color: #881c1c; 
+  }
+  
