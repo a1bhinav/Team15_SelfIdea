@@ -31,6 +31,10 @@ export class Person {
     this.email = email;
   }
 
+  setAuthData(data: AuthData): void {
+    this.authData = data;
+  }
+
   authenticate(password: string): boolean {
     return this.authData.validatePassword(password);
   }
