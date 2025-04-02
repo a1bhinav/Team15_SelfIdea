@@ -15,11 +15,36 @@ const TranscriptUploadPage: React.FC = () => {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    //need to connect this to pdf parser
-    navigate('/transcript-review');
+  
+    if (!selectedFile) {
+      alert("Please select a transcript file before submitting.");
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append("pdfFile", selectedFile);
+  
+    try {
+      const response = await fetch("http://localhost:5001/api/parse-pdf", {
+        method: "POST",
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to upload transcript.");
+      }
+  
+      const data = await response.json();
+      localStorage.setItem("parsedTranscript", JSON.stringify(data)); // Store parsed data for review page
+      navigate("/transcript-review"); // Navigate to review page after successful upload
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert("Something went wrong. Please try again later.");
+    }
   };
+  
 
   return (
     <div className="transcript-upload-container">
