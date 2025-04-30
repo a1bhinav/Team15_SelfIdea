@@ -1,0 +1,470 @@
+[
+  {
+    "number": "CICS 110",
+    "name": "Foundations of Programming",
+    "prerequisites": "R1 (or a score of 15 or higher on the math placement test Part A), or one of the following courses: MATH 101&amp;102 or MATH 104 or MATH 127 or MATH 128 or MATH 131 or MATH 132",
+    "credits": 4
+  },
+  {
+    "number": "CICS 127",
+    "name": "Introduction to Public Interest Technology",
+    "prerequisites": "",
+    "credits": 4
+  },
+  {
+    "number": "CICS 160",
+    "name": "Object-Oriented Programming",
+    "prerequisites": "CICS 110 (previously INFO 190S) or COMPSCI 121 with a grade of C or better",
+    "credits": 4
+  },
+  {
+    "number": "CICS 208",
+    "name": "Defending Democracy in a Digital World",
+    "prerequisites": "",
+    "credits": 0
+  },
+  {
+    "number": "CICS 210",
+    "name": "Data Structures",
+    "prerequisites": "CICS 160 (previously INFO 190T) with a grade of C or better",
+    "credits": 4
+  },
+  {
+    "number": "CICS 237",
+    "name": "Introduction to Research in the Discipline",
+    "prerequisites": "",
+    "credits": 2
+  },
+  {
+    "number": "CICS 256",
+    "name": "Make: A Hands-on Introduction to Physical Computing",
+    "prerequisites": "CICS 210 (or COMPSCI 187) with a grade of C or better and completion of the R1 (Basic Math Skills) Gen",
+    "credits": 4
+  },
+  {
+    "number": "CICS 291C",
+    "name": "Seminar - Finding your Strengths and Designing your Career",
+    "prerequisites": "",
+    "credits": 1
+  },
+  {
+    "number": "CICS 291T",
+    "name": "Seminar - CICS Transfer Success",
+    "prerequisites": "",
+    "credits": 1
+  },
+  {
+    "number": "CICS 298A",
+    "name": "Practicum - Leadership: Communicating Across Expertise",
+    "prerequisites": "a grade of C or better in CICS 160, COMPSCI 186, COMPSCI 187, or CICS 210",
+    "credits": 1
+  },
+  {
+    "number": "CICS 305",
+    "name": "Social Issues in Computing",
+    "prerequisites": "CS Majors:  ENGLWRIT 112 with a grade of C or better (or English Writing waiver), COMPSCI 220, COMPSCI 230 and COMPSCI 240 (or 250); INFORM Majors:  ENGLWRIT 112 with a grade of C or better (or English Writing waiver) and INFO 248",
+    "credits": 3
+  },
+  {
+    "number": "CICS 580",
+    "name": "Introduction to Numerical Computing with Python",
+    "prerequisites": "",
+    "credits": 1
+  },
+  {
+    "number": "COMPSCI 119",
+    "name": "Introduction to Programming",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 198C",
+    "name": "Practicum - Introduction to the C Programming Language",
+    "prerequisites": "CICS 160 (previously INFO 190T or COMPSCI 186 or CICS 210) with a grade of C or better, or COMPSCI 121 with a grade of B or better",
+    "credits": 1
+  },
+  {
+    "number": "COMPSCI 220",
+    "name": "Programming Methodology",
+    "prerequisites": "CICS 210 (or COMPSCI 187) with a grade of C or better",
+    "credits": 4
+  },
+  {
+    "number": "COMPSCI 230",
+    "name": "Computer Systems Principles",
+    "prerequisites": "CICS 210 (or COMPSCI 187) with a grade of C or better and COMPSCI 198C",
+    "credits": 4
+  },
+  {
+    "number": "COMPSCI 240",
+    "name": "Reasoning Under Uncertainty",
+    "prerequisites": "CICS 160 (previously INFO 190T or COMPSCI 187) or CICS 210 and MATH 132, all with a grade of C or better",
+    "credits": 4
+  },
+  {
+    "number": "COMPSCI 250",
+    "name": "Introduction to Computation",
+    "prerequisites": "CICS 160 (previously INFO 190T or COMPSCI 187 or E&amp;C-ENG 241, or CICS 210) and MATH 132, all with a grade of C or better",
+    "credits": 4
+  },
+  {
+    "number": "COMPSCI 311",
+    "name": "Introduction to Algorithms",
+    "prerequisites": "CICS 210 (OR COMPSCI 187) , and either COMPSCI 250 or MATH 455, all with a grade of C or better",
+    "credits": 4
+  },
+  {
+    "number": "COMPSCI 320",
+    "name": "Introduction to Software Engineering",
+    "prerequisites": "COMPSCI 220 with a grade of C or better",
+    "credits": 4
+  },
+  {
+    "number": "COMPSCI 325",
+    "name": "Introduction to Human Computer Interaction",
+    "prerequisites": "Prerequisites: COMPSCI 187 (or CICS 210) with a grade of C or better OR INFO 248 and COMPSCI 186 (or 187 or CICS 160;INFO 190T) with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 326",
+    "name": "Web Programming",
+    "prerequisites": "COMPSCI 220 (or COMPSCI 230) with a grade of C or better",
+    "credits": 4
+  },
+  {
+    "number": "COMPSCI 328",
+    "name": "Mobile Health Sensing and Analytics",
+    "prerequisites": "CS MAJORS:  CICS 210 (or COMPSCI 187) with a grade of C or better; INFORM MAJORS:  INFO 248 and CICS 160 (previously INFO 190T or COMPSCI 186 or COMPSCI 187), all with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 335",
+    "name": "Inside the Box: How Computers Work",
+    "prerequisites": "Prerequisite: COMPSCI 220 or 230 with a grade of 'C' or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 345",
+    "name": "Practice and Applications of Data Management",
+    "prerequisites": "CS MAJORS: CICS 210 (or COMPSCI 187) with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 360",
+    "name": "Introduction to Computer and Network Security",
+    "prerequisites": "COMPSCI 230 with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 363",
+    "name": "Computer Crime Law",
+    "prerequisites": "Prerequisite: COMPSCI 230 with a grade of 'C' or better AND either ENGLWRIT 112 (with a grade of 'C' or better) or the completion of the 'CW' General Education requirement",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 365",
+    "name": "Digital Forensics",
+    "prerequisites": "COMPSCI 230",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 367",
+    "name": "Reverse Engineering and Understanding Exploit Development",
+    "prerequisites": "COMPSCI 230 (or E&amp;C-ENG 322 or E&amp;C-ENG 373) with a grade of C or better, or permission of instructor",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 377",
+    "name": "Operating Systems",
+    "prerequisites": "COMPSCI 230 with a grade of C or better",
+    "credits": 4
+  },
+  {
+    "number": "COMPSCI 383",
+    "name": "Artificial Intelligence",
+    "prerequisites": "CS MAJORS: (CICS 210 or COMPSCI 187) and COMPSCI 240 (or STATISTC 315), both with a grade of C or better; INFORM MAJORS: INFO 348 and STATISTC 315, both with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 389",
+    "name": "Introduction to Machine Learning",
+    "prerequisites": "a grade of C or better in CICS 210 and COMPSCI 240 (or STATISTC 315 or STATISTC 240 or PSYCH 240 or OIM 240 or RES-ECON 212 or SOCIOL 212), and MATH 132",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 403",
+    "name": "Introduction to Robotics:  Perception, Mechanics, Dynamics, and Control",
+    "prerequisites": "MATH 235 and COMPSCI 220 (or COMPSCI 230) all with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 420",
+    "name": "Software Entrepreneurship",
+    "prerequisites": "COMPSCi 320 (or COMPSCI 326) with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 426",
+    "name": "Scalable Web Systems",
+    "prerequisites": "COMPSCI 320 or COMPSCI 326 with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 429",
+    "name": "Software Engineering Project Management",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 445",
+    "name": "Information Systems",
+    "prerequisites": "COMPSCI 220 (or 230) and COMPSCI 311 and COMPSCI 345 with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 446",
+    "name": "Search Engines",
+    "prerequisites": "COMPSCI 240 or COMPSCI 383 with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 453",
+    "name": "Computer Networks",
+    "prerequisites": "Experience programming; COMPSCI 230 (or COMPSCI 377) with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 461",
+    "name": "Secure Distributed Systems",
+    "prerequisites": "COMPSCI 326, COMPSCI 345, COMPSCI 377, COMPSCI 453, or COMPSCI 497P with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 490Q",
+    "name": "Quantum Information Science",
+    "prerequisites": "Math 132 and 235 and either COMPSCI 240 or STATISTIC 315;515, all with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 514",
+    "name": "Algorithms for Data Science",
+    "prerequisites": "COMPSCI 240 (or STATISTCS 315/515) and COMPSCI 311 both with a grade of B+ or better, or (COMPSCI 240 and STATISTCS 315/515 and COMPSCI 311 and MATH 233 and MATH 235, all with a C or better)",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 515",
+    "name": "Algorithms, Game Theory and Fairness",
+    "prerequisites": "",
+    "credits": 0
+  },
+  {
+    "number": "COMPSCI 520",
+    "name": "Theory and Practice of Software Engineering",
+    "prerequisites": "",
+    "credits": 0
+  },
+  {
+    "number": "COMPSCI 532",
+    "name": "Systems for Data Science",
+    "prerequisites": "COMPSCI 377 and COMPSCI 445 both with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 550",
+    "name": "Introduction to Simulation",
+    "prerequisites": "CICS 210 (or COMPSCI 187) and STATISTC 515",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 560",
+    "name": "Introduction to Computer and Network Security",
+    "prerequisites": "COMPSCI 453 or E&amp;C-ENG 374 with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 563",
+    "name": "Internet Law and Policy",
+    "prerequisites": "either COMPSCI 311, 383, or 360 (previously 460) with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 565",
+    "name": "Advanced Digital Forensic Systems",
+    "prerequisites": "COMPSCI 365 or COMPSCI 377 with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 575",
+    "name": "Combinatorics and Graph Theory",
+    "prerequisites": "either COMPSCI 250 or MATH 455 with a grade of B or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 578",
+    "name": "Distributed Computing and Systems",
+    "prerequisites": "COMPSCI 377 or an equivalent first course in operating systems",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 589",
+    "name": "Machine Learning",
+    "prerequisites": "MATH 545 and COMPSCI 240 and STATISTC 315/515 all with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 590Q",
+    "name": "Quantum Information Systems",
+    "prerequisites": "MATH 235 with a grade of C or better",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 596E",
+    "name": "Independent Study - Machine Learning Applied to Child Rescue",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 601",
+    "name": "Computation Theory",
+    "prerequisites": "an undergraduate course in automata theory and formal languages such as COMPSCI 501 or permission of instructor",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 602",
+    "name": "Research Methods in Empirical Computer Science",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 611",
+    "name": "Advanced Algorithms",
+    "prerequisites": "The mathematical maturity expected of incoming Computer Science graduate students, knowledge of algorithms at the level of COMPSCI 311",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 635",
+    "name": "Modern Computer Architecture",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 646",
+    "name": "Information Retrieval",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 648",
+    "name": "Quantum Information Systems",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 660",
+    "name": "Advanced Information Assurance",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 661",
+    "name": "Secure Distributed Systems",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 666",
+    "name": "Theory and Practice of Cryptography",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 685",
+    "name": "Advanced Natural Language Processing",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 687",
+    "name": "Reinforcement Learning",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 689",
+    "name": "Machine Learning",
+    "prerequisites": "undergraduate level probability and statistics, linear algebra, calculus, AI; computer programming in some high level language",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 690F",
+    "name": "Trustworthy and Responsible Artificial Intelligence",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 698W",
+    "name": "Practicum - CS Research Writing Practicum",
+    "prerequisites": "",
+    "credits": 1
+  },
+  {
+    "number": "COMPSCI 701",
+    "name": "Advanced Topics in Computer Science",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 701Y",
+    "name": "Advanced Topics in Computer Science (1st Semester)",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "COMPSCI 879",
+    "name": "Teaching Assistants as Tomorrow's Faculty",
+    "prerequisites": "",
+    "credits": 2
+  },
+  {
+    "number": "COMPSCI 891M",
+    "name": "Seminar - Theory of Computation",
+    "prerequisites": "Students must be enrolled in or have completed COMPSCI 250",
+    "credits": 1
+  },
+  {
+    "number": "INFO 101",
+    "name": "Introduction to Informatics",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "INFO 150",
+    "name": "A Mathematical Foundation for Informatics",
+    "prerequisites": "R1 math skills recommended",
+    "credits": 3
+  },
+  {
+    "number": "INFO 203",
+    "name": "A Networked World",
+    "prerequisites": "",
+    "credits": 3
+  },
+  {
+    "number": "INFO 248",
+    "name": "Introduction to Data Science",
+    "prerequisites": "a grade of C or or above in the following courses: CICS 110 (or CICS 160 or COMPSCI 119 or COMPSCI 121) with a grade of C or above and either: PSYCH 240, OIM 240, STATISTC 240, RES-ECON 212, SOCIOL 212, OR STATISTC 315/515, OR COMPSCI 240, with a grade of C or above",
+    "credits": 4
+  },
+  {
+    "number": "INFO 324",
+    "name": "Introduction to Clinical Health Informatics",
+    "prerequisites": "Prerequisite: INFO 248 (or STATISTIC 315;515 or COMPSCI 240) with a grade of C or better",
+    "credits": 4
+  },
+  {
+    "number": "INFO 348",
+    "name": "Data Analytics with Python",
+    "prerequisites": "INFO 248 and CICS 160 (or INFO 190T or COMPSCI 186 or 187), both with a grade of C or better",
+    "credits": 3
+  }
+]
