@@ -3,6 +3,9 @@ import { CourseTemplate } from './CourseTemplate';
 import { Configuration } from './Configuration';
 import { ConfigFile } from './ConfigFile';
 import { Course } from './Course';
+import { AuthData } from './AuthData';
+
+import { Role } from './Person';
 
 export class Advisor extends Person {
   private defaultTemplates: CourseTemplate[] = [];

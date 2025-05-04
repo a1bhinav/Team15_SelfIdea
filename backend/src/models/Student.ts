@@ -1,6 +1,8 @@
 import { Person } from './Person';
-import { Course } from './Course';
-import { CourseTemplate } from './CourseTemplate';
+import { Course, courseExampleDatabase } from './Course';
+import { CourseTemplate, exampleCourseTemplate } from './CourseTemplate';
+import { AuthData } from './AuthData';
+import { Role } from './Person';
 
 export class Student extends Person {
   public coursesTaken: Course[] = [];
@@ -41,3 +43,23 @@ export class Student extends Person {
     this.courseTemplates = this.courseTemplates.filter(template => template !== c);
   }
 }
+
+const exampleAuthData: AuthData = new AuthData(1, "secure_password_hash");
+
+
+export const exampleStudent = new Student(
+  54321,
+  "Jane Doe",
+  exampleAuthData,
+  "jane.doe@example.edu",
+  20202020,
+  "Mathematics"
+);
+
+// Add courses taken directly from courseExampleDatabase
+exampleStudent.coursesTaken.push(courseExampleDatabase[0]); // Introduction to Mathematics
+exampleStudent.coursesTaken.push(courseExampleDatabase[1]); // Introduction to Computer Science
+exampleStudent.coursesTaken.push(courseExampleDatabase[2]); // Data Structures
+
+// Add the exampleCourseTemplate directly
+exampleStudent.appendCourseTemplate(exampleCourseTemplate);
