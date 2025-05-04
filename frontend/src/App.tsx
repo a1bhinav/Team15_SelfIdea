@@ -7,6 +7,7 @@ import YourTemplate from "./components/YourTemplate";
 import ProfilePage from "./components/ProfilePage";
 import ApprovedPlan from "./components/ApprovedPlan";
 import RejectedPlan from "./components/RejectedPlan";
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 
 
 const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/rejected-plan",
     element: <RejectedPlan />,
+  },
+  {
+    path: "/admin-dashboard",
+    element: <AdminDashboard />,
   }
 ]);
 
@@ -46,3 +51,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
