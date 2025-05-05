@@ -7,6 +7,8 @@ import YourTemplate from "./components/YourTemplate";
 import ProfilePage from "./components/ProfilePage";
 import ApprovedPlan from "./components/ApprovedPlan";
 import RejectedPlan from "./components/RejectedPlan";
+import AdvisorDashboard from "./components/advisor/advisorDashboard";
+import AdvisorTemplates from "./components/advisor/advisorTemplates";
 
 
 const router = createBrowserRouter([
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
   {
     path: "/rejected-plan",
     element: <RejectedPlan />,
+  },
+  {
+    path: "/advisor-dashboard",
+    element: <AdvisorDashboard />,
+  },
+  {
+    path: "/advisor-templates",
+    element: <AdvisorTemplates />,
   }
 ]);
 
