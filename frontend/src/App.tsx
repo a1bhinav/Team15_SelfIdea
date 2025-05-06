@@ -9,6 +9,7 @@ import ApprovedPlan from "./components/ApprovedPlan";
 import RejectedPlan from "./components/RejectedPlan";
 import AdvisorDashboard from "./components/advisor/advisorDashboard";
 import AdvisorTemplates from "./components/advisor/advisorTemplates";
+import ManageCourses from "./components/advisor/ManageCourses";
 
 
 const router = createBrowserRouter([
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/advisor-templates",
     element: <AdvisorTemplates />,
+  },
+  {
+    path: "/manage-courses",
+    element: <ManageCourses />,
   }
 ]);
 
