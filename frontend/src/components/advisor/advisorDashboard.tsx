@@ -1,7 +1,7 @@
 // AdvisorDashboard.tsx
 import React from "react";
 import NavBar from "../NavBar";
-import "./AdvisorDashboard.css";
+import "./advisorDashboard.css";
 
 interface Advisor {
   id: string;

@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "../NavBar";
-import "./AdvisorTemplates.css";
+import "./advisorTemplates.css";
 
 interface Template {
   id: string;
