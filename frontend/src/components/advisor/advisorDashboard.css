@@ -1,0 +1,117 @@
+
+/* AdvisorDashboard.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lora", serif;
+  }
+  
+  .advisor-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+  }
+  
+  .advisor-dashboard-content {
+    flex: 1;
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;             
+    min-height: 0;    
+  }
+  
+  .advisor-title {
+    color: #212721;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 300;
+    margin: 2rem 0;
+    text-align: center;
+    margin-top: 10rem;
+  }
+  
+  .dashboard-body {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+    justify-content: center;
+    flex: 1;                      
+    min-height: 0;             
+  }
+  
+  .advisor-info-block {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .advisor-info-block > div {
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    max-width: 320px;
+    width: 100%;
+  }
+  
+  .info-item {
+    font-size: 1.2rem;
+    margin: 0.75rem 0;
+    display: flex;
+  }
+  
+  .info-label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: #881c1c;
+  }
+  
+  .info-value {
+    color: #212721;
+  }
+  
+  .students-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .students-title {
+    font-size: 1.8rem;
+    color: #212721;
+    margin-bottom: 1rem;
+  }
+  
+  .students-list {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-right: 0.5rem; 
+    max-height: 60vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  
+  .student-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  
+  .student-name {
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+    color: #881c1c;
+  }
+  
+  .student-email {
+    font-size: 1rem;
+    color: #212721;
+  }
+  
