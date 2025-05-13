@@ -1,13 +1,20 @@
 import { Course } from './Course';
 import { ConfigFile } from './ConfigFile';
 
+interface ConfigurationData {
+  majorName: string;
+  genEdRequirements: Course[];
+  majorRequirements: Course[];
+  creditRequirement: number;
+}
+
 export class Configuration {
   majorName: string;
   genEdRequirements: Course[];
   majorRequirements: Course[];
   creditRequirement: number;
 
-  constructor(config: any) {
+  constructor(config: ConfigurationData) {
     this.majorName = config.majorName;
     this.genEdRequirements = config.genEdRequirements;
     this.majorRequirements = config.majorRequirements;
