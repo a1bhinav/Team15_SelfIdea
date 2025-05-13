@@ -14,11 +14,12 @@ export class CourseTemplate {
     return this.semesters.reduce((total, sem) => total + sem.getSemesterCredits(), 0);
   }
 
+  // not validating. shrinking scope of project
   validateTemplate(): boolean {
     // Implement validation logic
     return true;
   }
-
+  // not validating. shrinking scope of project
   getRemainingRequirements(): string[] {
     // Implement logic
     return [];

@@ -1,6 +1,13 @@
 import { Course } from "../models/Course";
 
-const extractCourseHistory = (text: string): Course[] => {
+// Define an interface for the parser's output
+export interface ParsedCourseEntry {
+  course: Course;
+  grade: string;
+  term: string;
+}
+
+const extractCourseHistory = (text: string): ParsedCourseEntry[] => {
   const initialFilterRegex =
     /\b(Spring|Fall|A|A-|B\+|B|B-|C\+|C|C-|D\+|D|F|IF|INC|__|AUD|CR|DR|IP|NR|P|SAT|W|WF|WP|Y)\b/;
   // see https://www.umass.edu/registrar/grading-system-gpa-calculation
@@ -12,14 +19,21 @@ const extractCourseHistory = (text: string): Course[] => {
   console.log(text);
 
   const extractedLines: string[] = [];
+  let currentTerm: string = "Unknown Term"; // Default term
+  const termLineRegex = /^\s*(Spring|Fall|Winter|Summer)\s+\d{4}\s*$/i; // Regex to identify term lines
 
   for (const line of lines) {
+    if (termLineRegex.test(line)) {
+      currentTerm = line.trim();
+      // This line is a term header, so we update currentTerm and skip adding it to extractedLines
+      continue;
+    }
     if (initialFilterRegex.test(line)) {
       extractedLines.push(line);
     }
   }
 
-  const courses: Course[] = [];
+  const parsedEntries: ParsedCourseEntry[] = [];
   // Regex to capture:
   // 1. Course ID (e.g., "MATH 411", "COMPSCI 501")
   // 2. Course Name (e.g., "Intro to Abstract Algebra I")
@@ -36,21 +50,22 @@ const extractCourseHistory = (text: string): Course[] => {
       const id = match[1].replace(/\s+/g, ' ').trim();
       const name = match[2].trim();
       const credits = parseFloat(match[3]);
-      // const grade = match[4]; // Grade is captured but not used in the Course object as per current definition
+      const grade = match[4];
 
       // Ensure that we are not parsing a semester header as a course
       // A simple heuristic: if the name looks like a semester, skip it.
-      // This might need refinement.
+      // This might need refinement but is less critical if term lines are properly skipped earlier.
       if (/\b(Spring|Fall|Winter|Summer)\s+\d{4}\b/.test(name) || name.length < 3) { // also skip very short names
           continue;
       }
 
       if (!isNaN(credits)) {
-        courses.push(new Course(name, id, credits, []));
+        const course = new Course(name, id, credits, []);
+        parsedEntries.push({ course, grade, term: currentTerm });
       }
     }
   }
-  return courses;
+  return parsedEntries;
 };
 
 export default extractCourseHistory;
