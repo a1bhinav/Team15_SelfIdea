@@ -20,8 +20,9 @@
     width: 100%;
     max-width: 800px;            
     padding: 0 1rem;
-    text-align: center;
-    margin-left: 40%;
+    text-align: left;
+
+    margin: 0 auto;
     margin-top: 8em;
 
   }
@@ -36,6 +37,7 @@
     color: #212721;
     line-height: 1.6;
     margin-bottom: 1rem;
+    font-size: 1.2rem;
   }
   
   .contact-info {
@@ -46,7 +48,6 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-left: 65%;
     align-items: center;
   }
   

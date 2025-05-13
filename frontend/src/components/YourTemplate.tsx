@@ -1,8 +1,13 @@
+// src/components/YourTemplate.tsx
+
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import "./YourTemplate.css";
 
 const YourTemplate: React.FC = () => {
+  const navigate = useNavigate();
+
   // initally starts with 8 semesters and 4 courses in each semester
   const initialSemesters = Array.from({ length: 8 }, () => Array(4).fill(""));
 
@@ -20,18 +25,16 @@ const YourTemplate: React.FC = () => {
     "Course H",
   ];
 
-
   const addSemester = () => {
-    // adds a new sem with 4 courses
     setSemesters((prev) => [...prev, Array(4).fill("")]);
   };
 
   const removeSemester = () => {
-    // remove last sem
-    setSemesters((prev) => (prev.length > 1 ? prev.slice(0, prev.length - 1) : prev));
+    setSemesters((prev) =>
+      prev.length > 1 ? prev.slice(0, prev.length - 1) : prev
+    );
   };
 
-    // add a new course to the sem
   const addCourse = (semesterIndex: number) => {
     setSemesters((prev) => {
       const updated = [...prev];
@@ -39,19 +42,25 @@ const YourTemplate: React.FC = () => {
       return updated;
     });
   };
-    // remove last course from the sem
+
   const removeCourse = (semesterIndex: number) => {
     setSemesters((prev) => {
       const updated = [...prev];
       if (updated[semesterIndex].length > 1) {
-        updated[semesterIndex] = updated[semesterIndex].slice(0, updated[semesterIndex].length - 1);
+        updated[semesterIndex] = updated[semesterIndex].slice(
+          0,
+          updated[semesterIndex].length - 1
+        );
       }
       return updated;
     });
   };
 
-
-  const handleCourseChange = (semesterIndex: number, courseIndex: number, value: string) => {
+  const handleCourseChange = (
+    semesterIndex: number,
+    courseIndex: number,
+    value: string
+  ) => {
     setSemesters((prev) => {
       const updated = [...prev];
       const updatedSemester = [...updated[semesterIndex]];
@@ -63,8 +72,9 @@ const YourTemplate: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Submitted template:", semesters);
-    // send info to backend
+    // Here you would send `semesters` to your backend...
+    // Then navigate to the approved‑plan page:
+    navigate("/approved-plan");
   };
 
   return (
@@ -73,10 +83,18 @@ const YourTemplate: React.FC = () => {
       <main className="your-template-content">
         <h1 className="your-template-title">Your Template</h1>
         <div className="semester-controls">
-          <button type="button" className="semester-button" onClick={addSemester}>
+          <button
+            type="button"
+            className="semester-button"
+            onClick={addSemester}
+          >
             Add Semester
           </button>
-          <button type="button" className="semester-button" onClick={removeSemester}>
+          <button
+            type="button"
+            className="semester-button"
+            onClick={removeSemester}
+          >
             Remove Semester
           </button>
         </div>
@@ -85,14 +103,20 @@ const YourTemplate: React.FC = () => {
           <div className="template-grid">
             {semesters.map((semester, semesterIndex) => (
               <div key={semesterIndex} className="template-block">
-                <h2 className="semester-title">Semester {semesterIndex + 1}</h2>
+                <h2 className="semester-title">
+                  Semester {semesterIndex + 1}
+                </h2>
                 {semester.map((courseSelection, courseIndex) => (
                   <select
                     key={courseIndex}
                     className="template-dropdown"
                     value={courseSelection}
                     onChange={(e) =>
-                      handleCourseChange(semesterIndex, courseIndex, e.target.value)
+                      handleCourseChange(
+                        semesterIndex,
+                        courseIndex,
+                        e.target.value
+                      )
                     }
                   >
                     <option value="">Select a course</option>
@@ -122,8 +146,8 @@ const YourTemplate: React.FC = () => {
                 </div>
               </div>
             ))}
-            
           </div>
+
           <button type="submit" className="template-submit-button">
             Submit Template
           </button>
