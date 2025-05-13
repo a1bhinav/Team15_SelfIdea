@@ -28,6 +28,19 @@ export class Semester {
     // Implement GPA calculation logic
     return 4.0; // placeholder
   }
+
+  public getCourses(): Course[] {
+    return Array.from(this.courses.keys());
+  }
+
+  public getTerm(): string {
+    return this.term;
+  }
+
+  public getYear(): number {
+    return this.year;
+  }
+
 }
 
 
