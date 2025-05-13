@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import "./YourTemplate.css";
 
@@ -7,19 +7,25 @@ const YourTemplate: React.FC = () => {
   const initialSemesters = Array.from({ length: 8 }, () => Array(4).fill(""));
 
   const [semesters, setSemesters] = useState<string[][]>(initialSemesters);
+  const [apiCourses, setApiCourses] = useState<string[]>([]);
 
-  // Placeholder courses
-  const courses = [
-    "Course A",
-    "Course B",
-    "Course C",
-    "Course D",
-    "Course E",
-    "Course F",
-    "Course G",
-    "Course H",
-  ];
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/courses/course-ids");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setApiCourses(data);
+      } catch (error) {
+        console.error("Failed to fetch courses:", error);
+        // Optionally, set some error state here to display to the user
+      }
+    };
 
+    fetchCourses();
+  }, []);
 
   const addSemester = () => {
     // adds a new sem with 4 courses
@@ -31,7 +37,7 @@ const YourTemplate: React.FC = () => {
     setSemesters((prev) => (prev.length > 1 ? prev.slice(0, prev.length - 1) : prev));
   };
 
-    // add a new course to the sem
+  // add a new course to the sem
   const addCourse = (semesterIndex: number) => {
     setSemesters((prev) => {
       const updated = [...prev];
@@ -39,7 +45,7 @@ const YourTemplate: React.FC = () => {
       return updated;
     });
   };
-    // remove last course from the sem
+  // remove last course from the sem
   const removeCourse = (semesterIndex: number) => {
     setSemesters((prev) => {
       const updated = [...prev];
@@ -49,7 +55,6 @@ const YourTemplate: React.FC = () => {
       return updated;
     });
   };
-
 
   const handleCourseChange = (semesterIndex: number, courseIndex: number, value: string) => {
     setSemesters((prev) => {
@@ -96,7 +101,7 @@ const YourTemplate: React.FC = () => {
                     }
                   >
                     <option value="">Select a course</option>
-                    {courses.map((course, idx) => (
+                    {apiCourses.map((course, idx) => (
                       <option key={idx} value={course}>
                         {course}
                       </option>
