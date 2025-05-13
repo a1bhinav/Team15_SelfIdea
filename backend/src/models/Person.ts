@@ -35,6 +35,14 @@ export class Person {
     this.authData = data;
   }
 
+  public getPersonID(): number {
+    return this.personID;
+  }
+
+  public getAuthData(): AuthData {
+    return this.authData;
+  }
+
   authenticate(password: string): boolean {
     return this.authData.validatePassword(password);
   }

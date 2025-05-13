@@ -72,6 +72,19 @@ export class Semester {
 
     return totalQualityPoints / totalGpaCredits;
   }
+
+  public getCourses(): Course[] {
+    return Array.from(this.courses.keys());
+  }
+
+  public getTerm(): string {
+    return this.term;
+  }
+
+  public getYear(): number {
+    return this.year;
+  }
+
 }
 
 

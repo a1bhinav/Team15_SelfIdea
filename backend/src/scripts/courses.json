@@ -242,7 +242,7 @@
   {
     "number": "COMPSCI 490Q",
     "name": "Quantum Information Science",
-    "prerequisites": "Math 132 and 235 and either COMPSCI 240 or STATISTIC 315;515, all with a grade of C or better",
+    "prerequisites": "Math 132 and Math 235 and either COMPSCI 240 or STATISTIC 315;515, all with a grade of C or better",
     "credits": 3
   },
   {
