@@ -9,4 +9,13 @@ export class AuthData {
   validatePassword(password: string): boolean {
     return bcrypt.compareSync(password, this.passwordHash);
   }
+
+  public getUserID(): number {
+    return this.userID;
+  }
+
+  public getPasswordHash(): string {
+    return this.passwordHash;
+  }
+
 }

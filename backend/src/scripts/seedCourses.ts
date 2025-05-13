@@ -21,7 +21,7 @@ async function seedCourses() {
         id: course.number,                 // <- map `number` to `id`
         name: course.name,
         credits: course.credits,
-        prerequisites: course.prerequisites || []
+        prerequisites: extractCourseCodes(course.prerequisites)
         }));
 
 
@@ -37,3 +37,12 @@ async function seedCourses() {
 }
 
 seedCourses();
+
+
+function extractCourseCodes(prereqString: string): string[] {
+  if (!prereqString || prereqString.trim() === "") return [];
+
+  // regex to extract  "CICS 210", "COMPSCI 187", "INFO 248", etc.
+  const matches = prereqString.match(/\b[A-Z]{2,}(?:&[A-Z]+)?\s?\d{3}[A-Z]?\b/g);
+  return matches || [];
+}
