@@ -21,8 +21,8 @@ router.post(
       const pdfBuffer = req.file.buffer; // extract the uploaded PDF file from the request to pass to pdfParse
       const data = await pdfParse(pdfBuffer); // This is where the parsing happens
       const extracted_courses = extractCourseHistory(data.text);
-      console.log("Extracted Text:", extracted_courses);
-      res.json({ text: extracted_courses }); // Return the parsed pdf file text
+      console.log("Extracted Courses:", extracted_courses);
+      res.json({ courses: extracted_courses }); // Return the parsed courses
     } catch (error) {
       console.error("Error parsing PDF:", error);
       res.status(500).send("Error processing the PDF.");
