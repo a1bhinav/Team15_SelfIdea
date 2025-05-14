@@ -42,17 +42,28 @@ const ProfilePage: React.FC = () => {
   }, []);
 
   const handleRemoveTemplate = async (templateId: string) => {
-    // Replace with your actual API endpoint to remove a template
+    // templateId here is expected to be the name of the template, matching courseTemplateName on the backend
+    setError(null); // Clear previous errors
+    const studentIdToRemoveFrom = "20202020"; // TODO: Replace with actual student ID from auth or context
+
     try {
-      // Assuming the backend route is something like /api/templates/:id
-      const response = await fetch(`/api/templates/${templateId}`, { // Placeholder
-        method: "DELETE",
+      const response = await fetch("http://localhost:5000/api/remove-course-template", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          studentId: studentIdToRemoveFrom,
+          courseTemplateName: templateId, // templateId from function argument is the name
+        }),
       });
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json().catch(() => ({ message: "Failed to parse error response." }));
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
       }
       // Remove the template from the local state to update the UI
-      setTemplates(templates.filter((template) => template.id !== templateId));
+      setTemplates(prevTemplates => prevTemplates.filter((template) => template.id !== templateId));
+      alert("Template removed successfully!"); // Optional: give user feedback
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
