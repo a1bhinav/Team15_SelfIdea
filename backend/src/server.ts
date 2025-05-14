@@ -35,7 +35,7 @@ mongoose
 // Routes
 app.use("/api", helloRouter);
 app.use("/api", pdfRouter);
-app.use("/api/courses", courseRouter);
+app.use("/api", courseRouter);
 
 // Start the server
 app.listen(PORT, () => {
