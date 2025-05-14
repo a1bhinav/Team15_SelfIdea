@@ -8,6 +8,7 @@ const YourTemplate: React.FC = () => {
 
   const [semesters, setSemesters] = useState<string[][]>(initialSemesters);
   const [apiCourses, setApiCourses] = useState<string[]>([]);
+  const [templateName, setTemplateName] = useState<string>("");
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -66,10 +67,57 @@ const YourTemplate: React.FC = () => {
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Submitted template:", semesters);
-    // send info to backend
+
+    // TODO: Replace with actual student ID from auth or context
+    const studentId = "20202020"; 
+
+    if (!templateName.trim()) {
+      alert("Please enter a name for your template.");
+      return;
+    }
+
+    const formattedSemesters = semesters.map((semesterCourses, index) => ({
+      name: `Semester ${index + 1}`,
+      courses: semesterCourses.filter(course => course !== ""), // Filter out unselected courses
+    }));
+
+    const courseTemplateData = {
+      name: templateName,
+      semesters: formattedSemesters,
+    };
+
+    console.log("Submitting template:", courseTemplateData);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/append-course-template", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          studentId: studentId, // You'll need to get this from your auth system
+          courseTemplate: courseTemplateData,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Backend response:", result);
+      alert("Template submitted successfully!");
+      // Optionally, redirect or clear the form
+      // setTemplateName("");
+      // setSemesters(initialSemesters);
+
+    } catch (error) {
+      console.error("Failed to submit template:", error);
+      alert(`Failed to submit template: ${error instanceof Error ? error.message : "Unknown error"}`);
+    }
   };
 
   return (
@@ -87,6 +135,18 @@ const YourTemplate: React.FC = () => {
         </div>
 
         <form className="template-form" onSubmit={handleSubmit}>
+          <div className="template-grid-header">
+            <label htmlFor="templateName" className="template-name-label">Template Name:</label>
+            <input
+              type="text"
+              id="templateName"
+              className="template-name-input"
+              value={templateName}
+              onChange={(e) => setTemplateName(e.target.value)}
+              placeholder="Enter template name"
+              required
+            />
+          </div>
           <div className="template-grid">
             {semesters.map((semester, semesterIndex) => (
               <div key={semesterIndex} className="template-block">

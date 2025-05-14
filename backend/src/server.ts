@@ -5,7 +5,7 @@ import cors from "cors";
 
 import helloRouter from "./routes/helloRouter";
 import pdfRouter from "./routes/pdfRouter";
-import courseRouter from "./routes/courseRouter";
+import courseRouter from "./routes/courseTemplateRouter";
 
 dotenv.config(); // Load .env file with mongodb secret
 
