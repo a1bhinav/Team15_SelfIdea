@@ -52,16 +52,16 @@ const LoginPage: React.FC = () => {
           <div className="google-login">
             <GoogleLogin
             onSuccess={async (credentialResponse) => {
-              try {
-                const res = await axios.post('http://localhost:5000/api/auth/google', {
-                  credential: credentialResponse.credential,
-                });
-                console.log('User found:', res.data);
-                navigate('/transcript');
-              } catch (err) {
-                console.error('Google login error:', err);
-              }
-            }}
+            try {
+              const res = await axios.post('http://localhost:5000/api/auth/google', {
+                credential: credentialResponse.credential,
+              });
+              localStorage.setItem("spireID", res.data.spireID);  // store spireID
+              navigate('/transcript');
+            } catch (err) {
+              console.error('Google login error:', err);
+            }
+          }}
             onError={() => {
               console.error('Google login failed');
             }}

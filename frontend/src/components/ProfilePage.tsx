@@ -19,7 +19,9 @@ const ProfilePage: React.FC = () => {
         // Assuming the backend route to get user templates is something like /api/user/templates
         // You might need to pass user identification (e.g., from auth context or session)
         // Updated to call /api/student-templates with spireID=20202020
-        const response = await fetch("http://localhost:5000/api/student-templates?spireID=20202020"); 
+        const spireID = localStorage.getItem("spireID");
+        if (!spireID) throw new Error("Missing spireID. Please log in again.");
+        const response = await fetch(`http://localhost:5000/api/student-templates?spireID=${spireID}`); 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -41,7 +43,11 @@ const ProfilePage: React.FC = () => {
   const handleRemoveTemplate = async (templateId: string) => {
     // templateId here is expected to be the name of the template, matching courseTemplateName on the backend
     setError(null); // Clear previous errors
-    const studentIdToRemoveFrom = "20202020"; // TODO: Replace with actual student ID from auth or context
+    const studentIdToRemoveFrom = localStorage.getItem("spireID");
+    if (!studentIdToRemoveFrom) {
+      setError("Missing spireID. Please log in again.");
+      return;
+    } // TODO: Replace with actual student ID from auth or context
 
     try {
       const response = await fetch("http://localhost:5000/api/remove-course-template", {
