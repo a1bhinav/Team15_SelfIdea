@@ -12,13 +12,11 @@ import AdvisorTemplates from "./components/advisor/advisorTemplates";
 import ManageCourses from "./components/advisor/ManageCourses";
 import AboutUs from "./components/AboutUs";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginPage />,
   },
-
   {
     path: "/transcript",
     element: <TranscriptUploadPage />,
@@ -29,6 +27,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/your-template",
+    element: <YourTemplate />,
+  },
+  {
+    path: "/template/:templateId",
     element: <YourTemplate />,
   },
   {
