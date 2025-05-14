@@ -1,7 +1,4 @@
-// src/components/YourTemplate.tsx
-
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import "./YourTemplate.css";
 
@@ -12,18 +9,24 @@ const YourTemplate: React.FC = () => {
   const initialSemesters = Array.from({ length: 8 }, () => Array(4).fill(""));
 
   const [semesters, setSemesters] = useState<string[][]>(initialSemesters);
+  const [apiCourses, setApiCourses] = useState<string[]>([]);
+  const [templateName, setTemplateName] = useState<string>("");
 
-  // Placeholder courses
-  const courses = [
-    "Course A",
-    "Course B",
-    "Course C",
-    "Course D",
-    "Course E",
-    "Course F",
-    "Course G",
-    "Course H",
-  ];
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/courses/course-ids");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setApiCourses(data);
+      } catch (error) {
+        console.error("Failed to fetch courses:", error);
+        // Optionally, set some error state here to display to the user
+      }
+    };
+
 
   const addSemester = () => {
     setSemesters((prev) => [...prev, Array(4).fill("")]);
@@ -34,6 +37,7 @@ const YourTemplate: React.FC = () => {
       prev.length > 1 ? prev.slice(0, prev.length - 1) : prev
     );
   };
+
 
   const addCourse = (semesterIndex: number) => {
     setSemesters((prev) => {
@@ -56,11 +60,7 @@ const YourTemplate: React.FC = () => {
     });
   };
 
-  const handleCourseChange = (
-    semesterIndex: number,
-    courseIndex: number,
-    value: string
-  ) => {
+
     setSemesters((prev) => {
       const updated = [...prev];
       const updatedSemester = [...updated[semesterIndex]];
@@ -70,11 +70,8 @@ const YourTemplate: React.FC = () => {
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Here you would send `semesters` to your backend...
-    // Then navigate to the approved‑plan page:
-    navigate("/approved-plan");
   };
 
   return (
@@ -100,6 +97,18 @@ const YourTemplate: React.FC = () => {
         </div>
 
         <form className="template-form" onSubmit={handleSubmit}>
+          <div className="template-grid-header">
+            <label htmlFor="templateName" className="template-name-label">Template Name:</label>
+            <input
+              type="text"
+              id="templateName"
+              className="template-name-input"
+              value={templateName}
+              onChange={(e) => setTemplateName(e.target.value)}
+              placeholder="Enter template name"
+              required
+            />
+          </div>
           <div className="template-grid">
             {semesters.map((semester, semesterIndex) => (
               <div key={semesterIndex} className="template-block">
@@ -120,7 +129,7 @@ const YourTemplate: React.FC = () => {
                     }
                   >
                     <option value="">Select a course</option>
-                    {courses.map((course, idx) => (
+                    {apiCourses.map((course, idx) => (
                       <option key={idx} value={course}>
                         {course}
                       </option>
