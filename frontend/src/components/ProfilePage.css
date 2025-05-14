@@ -88,4 +88,30 @@ html, body {
     font-size: 1rem;
     color: #212721;
   }
+  .add-template-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 400px;
+    margin: 1rem auto;
+  }
+  .add-template-input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+  .add-template-button {
+    padding: 0.6rem 1rem;
+    background-color: #881c1c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .add-template-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
   

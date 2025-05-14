@@ -30,7 +30,7 @@ const TranscriptUploadPage: React.FC = () => {
     formData.append('pdfFile', selectedFile);
 
     try {
-      const res = await fetch('http://localhost:5000/api/parse-pdf', {
+      const res = await fetch('http://localhost:5001/api/parse-pdf', {
         method: 'POST',
         body: formData,
       });

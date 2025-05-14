@@ -1,41 +1,34 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
+import { useParams } from "react-router-dom";
 import "./YourTemplate.css";
 
-// Define the structure for a course object
 interface Course {
-  id: string; // Unique identifier for the course, e.g., "COMPSCI187"
-  name: string; // Display name, e.g., "Programming with Data Structures"
-  credits: number; // Number of credits for the course
+  id: string;
+  name: string;
+  credits: number;
 }
 
-// Define the structure for a selected course in a semester, which might include a grade later
-// For now, it will mirror the Course structure but 'id' is the crucial part from selection
 interface SelectedCourse {
   id: string;
   name: string;
   credits: number;
-  // grade?: string; // Optional: for future implementation
 }
 
 const YourTemplate: React.FC = () => {
-  // Initialize with 8 semesters, each capable of holding 4 SelectedCourse objects (or null if empty)
   const initialSemesters = Array.from({ length: 8 }, () =>
     Array(4).fill(null as SelectedCourse | null)
   );
-
   const [semesters, setSemesters] = useState<(SelectedCourse | null)[][]>(initialSemesters);
-  const [apiCourses, setApiCourses] = useState<Course[]>([]); // Stores full course objects from API
+  const [apiCourses, setApiCourses] = useState<Course[]>([]);
   const [templateName, setTemplateName] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-
+  const { templateId } = useParams<{ templateId: string }>();
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        // IMPORTANT: Assuming this endpoint now returns Array<Course>
-        // e.g., [{ id: "CS101", name: "Intro to CS", credits: 3 }, ...]
-        const response = await fetch("http://localhost:5000/api/course-ids");
+        const response = await fetch("http://localhost:5001/api/course-ids");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -46,20 +39,48 @@ const YourTemplate: React.FC = () => {
         setError(error instanceof Error ? error.message : "Failed to fetch courses");
       }
     };
-
     fetchCourses();
   }, []);
 
+  useEffect(() => {
+    if (templateId) {
+      const fetchTemplate = async () => {
+        try {
+          const response = await fetch(`http://localhost:5001/api/student-templates?spireID=20202020`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const allTemplates: any[] = await response.json();
+          const tpl = allTemplates.find(t => t.id === templateId);
+          if (tpl) {
+            setTemplateName(tpl.title);
+            if (tpl.semesters) {
+              setSemesters(
+                tpl.semesters.map((sem: any) =>
+                  sem.courses.map((c: any) => ({ id: c.name, name: c.name, credits: c.credits }))
+                )
+              );
+            }
+          }
+        } catch (error) {
+          console.error("Failed to fetch template:", error);
+          setError(error instanceof Error ? error.message : "Failed to fetch template");
+        }
+      };
+      fetchTemplate();
+    }
+  }, [templateId]);
+
   const addSemester = () => {
-    setSemesters((prev) => [...prev, Array(4).fill(null as SelectedCourse | null)]);
+    setSemesters(prev => [...prev, Array(4).fill(null as SelectedCourse | null)]);
   };
 
   const removeSemester = () => {
-    setSemesters((prev) => (prev.length > 1 ? prev.slice(0, prev.length - 1) : prev));
+    setSemesters(prev => (prev.length > 1 ? prev.slice(0, prev.length - 1) : prev));
   };
 
   const addCourse = (semesterIndex: number) => {
-    setSemesters((prev) => {
+    setSemesters(prev => {
       const updated = [...prev];
       updated[semesterIndex] = [...updated[semesterIndex], null];
       return updated;
@@ -67,7 +88,7 @@ const YourTemplate: React.FC = () => {
   };
 
   const removeCourse = (semesterIndex: number) => {
-    setSemesters((prev) => {
+    setSemesters(prev => {
       const updated = [...prev];
       if (updated[semesterIndex].length > 1) {
         updated[semesterIndex] = updated[semesterIndex].slice(0, updated[semesterIndex].length - 1);
@@ -77,13 +98,13 @@ const YourTemplate: React.FC = () => {
   };
 
   const handleCourseChange = (semesterIndex: number, courseIndex: number, selectedCourseId: string) => {
-    setSemesters((prev) => {
-      const updated = prev.map(s => [...s]); // Deep copy semesters and courses
+    setSemesters(prev => {
+      const updated = prev.map(s => [...s]);
       const course = apiCourses.find(c => c.id === selectedCourseId);
       if (course) {
         updated[semesterIndex][courseIndex] = { id: course.id, name: course.name, credits: course.credits };
       } else {
-        updated[semesterIndex][courseIndex] = null; // Or handle as an error / reset
+        updated[semesterIndex][courseIndex] = null;
       }
       return updated;
     });
@@ -91,44 +112,36 @@ const YourTemplate: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError(null); // Clear previous errors
-
-    const studentId = "20202020"; // TODO: Replace with actual student ID
-
+    setError(null);
+    const studentId = "20202020";
     if (!templateName.trim()) {
       alert("Please enter a name for your template.");
       return;
     }
-
-    const formattedSemesters = semesters.map((semesterCourses, index) => {
-      const coursesInSemester = semesterCourses
-        .filter((course): course is SelectedCourse => course !== null) // Type guard
-        .map(course => ({
-          name: course.name,
-          credits: course.credits,
-          // grade: course.grade, // Add if/when grade is implemented
-        }));
-      
-      return {
-        name: `Semester ${index + 1}`, // Placeholder name, can be made dynamic later
-        courses: coursesInSemester,
-      };
-    }).filter(semester => semester.courses.length > 0); // Optional: remove semesters with no courses
-
+    const formattedSemesters = semesters
+      .map((semesterCourses, index) => {
+        const coursesInSemester = semesterCourses
+          .filter((course): course is SelectedCourse => course !== null)
+          .map(course => ({
+            name: course.name,
+            credits: course.credits,
+          }));
+        return {
+          name: `Semester ${index + 1}`,
+          courses: coursesInSemester,
+        };
+      })
+      .filter(semester => semester.courses.length > 0);
     if (formattedSemesters.length === 0 && !semesters.flat().some(c => c !== null)) {
-        alert("Please add at least one course to your template.");
-        return;
+      alert("Please add at least one course to your template.");
+      return;
     }
-
     const courseTemplateData = {
       name: templateName,
       semesters: formattedSemesters,
     };
-
-    console.log("Submitting template:", JSON.stringify(courseTemplateData, null, 2));
-
     try {
-      const response = await fetch("http://localhost:5000/api/append-course-template", {
+      const response = await fetch("http://localhost:5001/api/append-course-template", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -138,19 +151,12 @@ const YourTemplate: React.FC = () => {
           courseTemplate: courseTemplateData,
         }),
       });
-
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: "Failed to parse error response." })); // Handle non-JSON error response
+        const errorData = await response.json().catch(() => ({ message: "Failed to parse error response." }));
         throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
       }
-
       const result = await response.json();
-      console.log("Backend response:", result);
       alert("Template submitted successfully!");
-      // Optionally, redirect or clear the form
-      // setTemplateName("");
-      // setSemesters(initialSemesters);
-
     } catch (error) {
       console.error("Failed to submit template:", error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred during submission.";
@@ -173,7 +179,6 @@ const YourTemplate: React.FC = () => {
             Remove Last Semester
           </button>
         </div>
-
         <form className="template-form" onSubmit={handleSubmit}>
           <div className="template-grid-header">
             <label htmlFor="templateName" className="template-name-label">Template Name:</label>
@@ -182,7 +187,7 @@ const YourTemplate: React.FC = () => {
               id="templateName"
               className="template-name-input"
               value={templateName}
-              onChange={(e) => setTemplateName(e.target.value)}
+              onChange={e => setTemplateName(e.target.value)}
               placeholder="Enter template name"
               required
             />
@@ -195,21 +200,17 @@ const YourTemplate: React.FC = () => {
                   <select
                     key={courseIndex}
                     className="template-dropdown"
-                    value={selectedCourse ? selectedCourse.id : ""} // Use course id as value
-                    onChange={(e) =>
-                      handleCourseChange(semesterIndex, courseIndex, e.target.value)
-                    }
+                    value={selectedCourse ? selectedCourse.id : ""}
+                    onChange={e => handleCourseChange(semesterIndex, courseIndex, e.target.value)}
                   >
                     <option value="">Select a course</option>
-                    {/* Populate with actual course names from apiCourses, use course.id as value */}
-                    {apiCourses.map((course) => (
+                    {apiCourses.map(course => (
                       <option key={course.id} value={course.id}>
                         {course.id}
                       </option>
                     ))}
                   </select>
                 ))}
-
                 <div className="course-controls">
                   <button
                     type="button"
@@ -228,7 +229,6 @@ const YourTemplate: React.FC = () => {
                 </div>
               </div>
             ))}
-            
           </div>
           <button type="submit" className="template-submit-button">
             Save Template
