@@ -5,6 +5,7 @@ import cors from "cors";
 
 import helloRouter from "./routes/helloRouter";
 import pdfRouter from "./routes/pdfRouter";
+import authRouter from "./routes/authRouter";
 
 dotenv.config(); // Load .env file with mongodb secret
 
@@ -34,7 +35,7 @@ mongoose
 // Routes
 app.use("/api", helloRouter);
 app.use("/api", pdfRouter);
-
+app.use("/api", authRouter);
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
