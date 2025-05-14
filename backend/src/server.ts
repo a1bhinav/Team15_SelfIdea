@@ -11,7 +11,7 @@ import courseRouter from "./routes/courseTemplateRouter";
 dotenv.config(); // Load .env file with mongodb secret
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 app.use(
   cors({
