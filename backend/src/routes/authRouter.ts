@@ -17,23 +17,40 @@ const handleGoogleAuth: RequestHandler = async (req, res) => {
     });
     const payload = ticket.getPayload();
 
-    if (!payload?.email) {
+    if (!payload?.email || !payload?.sub || !payload.name) {
       res.status(400).json({ error: "Invalid token" });
       return;
     }
 
-    const user = await StudentModel.findOne({ email: payload.email });
+    let user = await StudentModel.findOne({ email: payload.email });
+
     if (!user) {
-      res.status(404).json({ error: "User not found" });
-      return;
+      // Auto-create new student
+      user = new StudentModel({
+        name: payload.name,
+        email: payload.email,
+        googleId: payload.sub,
+        personID: Math.floor(Math.random() * 1000000), // Or a better unique ID generator
+        spireID: Math.floor(Math.random() * 1000000000),
+        major: "Undeclared",
+        authData: {
+          userID: payload.sub,
+          password: "", // Optional — or put a dummy hashed password
+        },
+        coursesTaken: [],
+        courseTemplates: [],
+      });
+
+      await user.save();
+    } else if (!user.googleId) {
+      user.googleId = payload.sub;
+      await user.save();
     }
 
     res.status(200).json({ message: "Login successful", user });
-    return;
   } catch (err) {
     console.error("Auth error:", err);
     res.status(500).json({ error: "Internal Server Error" });
-    return;
   }
 };
 

@@ -28,7 +28,7 @@ describe("CourseModel", () => {
       name: "Introduction to Mathematics",
       id: "MATH101",
       credits: 3,
-      prerequisites: []
+      prerequisites: [],
     };
 
     const course = new CourseModel(courseData);
@@ -44,7 +44,6 @@ describe("CourseModel", () => {
   it("should not save a course without required fields", async () => {
     const courseData = {
       id: "MATH101",
-      credits: 3
     };
 
     const course = new CourseModel(courseData);
@@ -57,7 +56,7 @@ describe("CourseModel", () => {
       name: "Introduction to Mathematics",
       id: "MATH101",
       credits: 3,
-      prerequisites: []
+      prerequisites: [],
     };
 
     const course1 = new CourseModel(courseData);
@@ -65,5 +64,19 @@ describe("CourseModel", () => {
 
     await course1.save();
     await expect(course2.save()).rejects.toThrow();
+  });
+
+  it("should save prerequisites as an array of strings", async () => {
+    const courseData = {
+      name: "Data Structures",
+      id: "CS102",
+      credits: 4,
+      prerequisites: ["CS101"],
+    };
+
+    const course = new CourseModel(courseData);
+    const savedCourse = await course.save();
+
+    expect(savedCourse.prerequisites).toEqual(["CS101"]);
   });
 });

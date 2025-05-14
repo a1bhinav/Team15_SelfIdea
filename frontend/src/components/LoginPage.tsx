@@ -53,10 +53,11 @@ const LoginPage: React.FC = () => {
             <GoogleLogin
             onSuccess={async (credentialResponse) => {
               try {
-                const res = await axios.post('http://localhost:5001/api/auth/google', {
-                  token: credentialResponse.credential,
+                const res = await axios.post('http://localhost:5000/api/auth/google', {
+                  credential: credentialResponse.credential,
                 });
                 console.log('User found:', res.data);
+                navigate('/transcript');
               } catch (err) {
                 console.error('Google login error:', err);
               }
