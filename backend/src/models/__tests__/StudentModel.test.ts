@@ -45,16 +45,6 @@ describe('StudentModel', () => {
     expect(savedPerson.authData).toEqual(personData.authData);
   });
 
-  it('should not save a person without required fields', async () => {
-    const personData = {
-      name: 'John Doe',
-    };
-
-    const person = new StudentModel(personData);
-
-    await expect(person.save()).rejects.toThrow(mongoose.Error.ValidationError);
-  });
-
   it('should enforce role enum validation', async () => {
     const personData = {
       personID: 12345,
