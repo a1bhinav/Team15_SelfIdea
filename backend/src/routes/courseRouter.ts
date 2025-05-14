@@ -21,6 +21,9 @@ router.get("/course-ids", async (req: Request, res: Response) => {
 });
 
 router.post("/append-course-template", async (req: Request, res: Response): Promise<any> => {
+  try {
+    // in this case we are doing it by spireid. studentid is the spireid
+    //TODOD need to make the id be connected to google auth in the db
     const { studentId, courseTemplate } = req.body;
 
     if (mongoose.connection.readyState !== 1) {
@@ -40,6 +43,50 @@ router.post("/append-course-template", async (req: Request, res: Response): Prom
     await student.save();
 
     res.status(200).json({ message: "Course template appended successfully", student });
+  } catch (error) {
+    console.error("Error appending course template:", error);
+    res.status(500).json({ message: "Failed to append course template" });
+  }
+});
+
+router.post("/remove-course-template", async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { studentId, courseTemplateName } = req.body;
+
+    if (!studentId || !courseTemplateName) {
+      return res.status(400).json({ message: "Student ID and Course Template Name are required" });
+    }
+
+    if (mongoose.connection.readyState !== 1) {
+      await mongoose.connect(process.env.MONGO_URI as string);
+    }
+
+    const student = await StudentModel.findOne({ spireID: studentId });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    if (!student.courseTemplates || student.courseTemplates.length === 0) {
+      return res.status(404).json({ message: "No course templates found for this student" });
+    }
+
+    const initialLength = student.courseTemplates.length;
+    student.courseTemplates = student.courseTemplates.filter(
+      (template: any) => template.name !== courseTemplateName
+    );
+
+    if (student.courseTemplates.length === initialLength) {
+      return res.status(404).json({ message: `Course template with name '${courseTemplateName}' not found` });
+    }
+
+    await student.save();
+
+    res.status(200).json({ message: "Course template removed successfully", student });
+  } catch (error) {
+    console.error("Error removing course template:", error);
+    res.status(500).json({ message: "Failed to remove course template" });
+  }
 });
 
 export default router;
