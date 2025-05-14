@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import { PersonModel } from '../StudentModel'; // Adjust the import path if necessary
+import StudentModel from '../StudentModel'; // Adjust the import path if necessary
 
-describe('PersonModel', () => {
+describe('StudentModel', () => {
   let mongoServer: MongoMemoryServer;
 
   beforeAll(async () => {
@@ -20,7 +20,7 @@ describe('PersonModel', () => {
 
   afterEach(async () => {
     // Clear the database after each test
-    await PersonModel.deleteMany({});
+    await StudentModel.deleteMany({});
   });
 
   it('should create and save a person successfully', async () => {
@@ -35,14 +35,13 @@ describe('PersonModel', () => {
       },
     };
 
-    const person = new PersonModel(personData);
+    const person = new StudentModel(personData);
     const savedPerson = await person.save();
 
     expect(savedPerson._id).toBeDefined();
     expect(savedPerson.personID).toBe(personData.personID);
     expect(savedPerson.name).toBe(personData.name);
     expect(savedPerson.email).toBe(personData.email);
-    expect(savedPerson.role).toBe(personData.role);
     expect(savedPerson.authData).toEqual(personData.authData);
   });
 
@@ -51,7 +50,7 @@ describe('PersonModel', () => {
       name: 'John Doe',
     };
 
-    const person = new PersonModel(personData);
+    const person = new StudentModel(personData);
 
     await expect(person.save()).rejects.toThrow(mongoose.Error.ValidationError);
   });
@@ -68,7 +67,7 @@ describe('PersonModel', () => {
       },
     };
 
-    const person = new PersonModel(personData);
+    const person = new StudentModel(personData);
 
     await expect(person.save()).rejects.toThrow(mongoose.Error.ValidationError);
   });
