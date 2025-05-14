@@ -1,3 +1,5 @@
+import { GoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './LoginPage.css';
@@ -33,9 +35,24 @@ const LoginPage: React.FC = () => {
             <button type="button" className="login-button">
               Log in
             </button>
-            <button type="button" className="create-account-button">
-              Create Account
-            </button>
+          </div>
+        
+          <div className="google-login">
+            <GoogleLogin
+            onSuccess={async (credentialResponse) => {
+              try {
+                const res = await axios.post('http://localhost:5000/api/auth/google', {
+                  token: credentialResponse.credential,
+                });
+                console.log('User found:', res.data);
+              } catch (err) {
+                console.error('Google login error:', err);
+              }
+            }}
+            onError={() => {
+              console.error('Google login failed');
+            }}
+            />
           </div>
         </form>
 
