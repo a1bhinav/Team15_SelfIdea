@@ -4,6 +4,7 @@ const studentSchema = new mongoose.Schema({
   personID: Number,
   name: String,
   email: String,
+  googleId: { type: String, unique: true },
   spireID: Number,
   major: String,
   authData: {
