@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useNavigate } from 'react-router-dom';
 import NavBar from "./NavBar";
 import "./ProfilePage.css";
+        
 
 interface Template {
   id: string; // Or number, depending on your backend
@@ -9,6 +11,7 @@ interface Template {
 }
 
 const ProfilePage: React.FC = () => {
+
   const [templates, setTemplates] = useState<Template[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -69,6 +72,7 @@ const ProfilePage: React.FC = () => {
       }
       console.error("Failed to remove template:", err);
     }
+
   };
 
   return (
@@ -87,10 +91,12 @@ const ProfilePage: React.FC = () => {
             <span className="info-label">Major:</span>
             <span className="info-value">Computer Science</span>
           </div>
+
           <div className="info-item">
             <span className="info-label">Semester:</span>
             <span className="info-value">Fall 2025</span>
           </div>
+
           <div className="info-item">
             <span className="info-label">GPA:</span>
             <span className="info-value">3.8</span>
@@ -100,6 +106,7 @@ const ProfilePage: React.FC = () => {
         <h2 className="saved-templates-title">Saved Templates</h2>
         {error && <p className="error-message">Error: {error}</p>}
         <div className="saved-templates">
+
           {templates.length > 0 ? (
             templates.map((template) => (
               <div key={template.id} className="template-card">
@@ -116,8 +123,8 @@ const ProfilePage: React.FC = () => {
           ) : (
             <p>No saved templates found.</p>
           )}
-        </div>
 
+        </div>
       </main>
     </div>
   );

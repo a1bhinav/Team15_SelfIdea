@@ -19,10 +19,12 @@ interface SelectedCourse {
 }
 
 const YourTemplate: React.FC = () => {
+
   // Initialize with 8 semesters, each capable of holding 4 SelectedCourse objects (or null if empty)
   const initialSemesters = Array.from({ length: 8 }, () =>
     Array(4).fill(null as SelectedCourse | null)
   );
+
 
   const [semesters, setSemesters] = useState<(SelectedCourse | null)[][]>(initialSemesters);
   const [apiCourses, setApiCourses] = useState<Course[]>([]); // Stores full course objects from API
@@ -47,16 +49,16 @@ const YourTemplate: React.FC = () => {
       }
     };
 
-    fetchCourses();
-  }, []);
 
   const addSemester = () => {
+
     setSemesters((prev) => [...prev, Array(4).fill(null as SelectedCourse | null)]);
   };
 
   const removeSemester = () => {
     setSemesters((prev) => (prev.length > 1 ? prev.slice(0, prev.length - 1) : prev));
   };
+
 
   const addCourse = (semesterIndex: number) => {
     setSemesters((prev) => {
@@ -70,13 +72,18 @@ const YourTemplate: React.FC = () => {
     setSemesters((prev) => {
       const updated = [...prev];
       if (updated[semesterIndex].length > 1) {
-        updated[semesterIndex] = updated[semesterIndex].slice(0, updated[semesterIndex].length - 1);
+        updated[semesterIndex] = updated[semesterIndex].slice(
+          0,
+          updated[semesterIndex].length - 1
+        );
       }
       return updated;
     });
   };
 
+
   const handleCourseChange = (semesterIndex: number, courseIndex: number, selectedCourseId: string) => {
+
     setSemesters((prev) => {
       const updated = prev.map(s => [...s]); // Deep copy semesters and courses
       const course = apiCourses.find(c => c.id === selectedCourseId);
@@ -91,6 +98,7 @@ const YourTemplate: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     setError(null); // Clear previous errors
 
     const studentId = "20202020"; // TODO: Replace with actual student ID
@@ -157,6 +165,7 @@ const YourTemplate: React.FC = () => {
       setError(errorMessage);
       alert(`Failed to submit template: ${errorMessage}`);
     }
+
   };
 
   return (
@@ -166,11 +175,17 @@ const YourTemplate: React.FC = () => {
         <h1 className="your-template-title">Create Your Course Template</h1>
         {error && <p className="template-error-message">Error: {error}</p>}
         <div className="semester-controls">
-          <button type="button" className="semester-button" onClick={addSemester}>
+          <button
+            type="button"
+            className="semester-button"
+            onClick={addSemester}
+          >
             Add Semester
           </button>
+
           <button type="button" className="semester-button" onClick={removeSemester}>
             Remove Last Semester
+
           </button>
         </div>
 
@@ -190,14 +205,20 @@ const YourTemplate: React.FC = () => {
           <div className="template-grid">
             {semesters.map((semester, semesterIndex) => (
               <div key={semesterIndex} className="template-block">
+
                 <h2 className="semester-title">Semester {semesterIndex + 1}</h2>
                 {semester.map((selectedCourse, courseIndex) => (
+
                   <select
                     key={courseIndex}
                     className="template-dropdown"
                     value={selectedCourse ? selectedCourse.id : ""} // Use course id as value
                     onChange={(e) =>
-                      handleCourseChange(semesterIndex, courseIndex, e.target.value)
+                      handleCourseChange(
+                        semesterIndex,
+                        courseIndex,
+                        e.target.value
+                      )
                     }
                   >
                     <option value="">Select a course</option>
@@ -228,8 +249,8 @@ const YourTemplate: React.FC = () => {
                 </div>
               </div>
             ))}
-            
           </div>
+
           <button type="submit" className="template-submit-button">
             Save Template
           </button>
