@@ -8,32 +8,13 @@ export interface ParsedCourseEntry {
 }
 
 const extractCourseHistory = (text: string): ParsedCourseEntry[] => {
-  const initialFilterRegex =
-    /\b(Spring|Fall|A|A-|B\+|B|B-|C\+|C|C-|D\+|D|F|IF|INC|__|AUD|CR|DR|IP|NR|P|SAT|W|WF|WP|Y)\b/;
-  // see https://www.umass.edu/registrar/grading-system-gpa-calculation
-  // added Spring and Fall for semester parsing. 
-
-  //TODO: will probably need to change regex to use course codes like CHEM or COMPSCI instead of grades 
-  //This would solve the in progress course parsing issue
   const lines = text.split("\n");
   console.log(text);
 
-  const extractedLines: string[] = [];
+  const parsedEntries: ParsedCourseEntry[] = [];
   let currentTerm: string = "Unknown Term"; // Default term
   const termLineRegex = /^\s*(Spring|Fall|Winter|Summer)\s+\d{4}\s*$/i; // Regex to identify term lines
 
-  for (const line of lines) {
-    if (termLineRegex.test(line)) {
-      currentTerm = line.trim();
-      // This line is a term header, so we update currentTerm and skip adding it to extractedLines
-      continue;
-    }
-    if (initialFilterRegex.test(line)) {
-      extractedLines.push(line);
-    }
-  }
-
-  const parsedEntries: ParsedCourseEntry[] = [];
   // Regex to capture:
   // 1. Course ID (e.g., "MATH 411", "COMPSCI 501")
   // 2. Course Name (e.g., "Intro to Abstract Algebra I")
@@ -44,7 +25,14 @@ const extractCourseHistory = (text: string): ParsedCourseEntry[] => {
     // Adjusted course name to include more characters like (),:',&/-
     // Corrected course ID part to not capture a trailing letter from the name
 
-  for (const line of extractedLines) {
+  for (const line of lines) {
+    if (termLineRegex.test(line)) {
+      currentTerm = line.trim();
+      // This line is a term header, so we update currentTerm and skip to the next line
+      continue;
+    }
+
+    // Try to parse the line as a course
     const match = line.match(courseParseRegex);
     if (match) {
       const id = match[1].replace(/\s+/g, ' ').trim();

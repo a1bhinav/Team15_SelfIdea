@@ -10,6 +10,7 @@ import RejectedPlan from "./components/RejectedPlan";
 import AdvisorDashboard from "./components/advisor/advisorDashboard";
 import AdvisorTemplates from "./components/advisor/advisorTemplates";
 import ManageCourses from "./components/advisor/ManageCourses";
+import AboutUs from "./components/AboutUs";
 
 
 const router = createBrowserRouter([
@@ -53,7 +54,11 @@ const router = createBrowserRouter([
   {
     path: "/manage-courses",
     element: <ManageCourses />,
-  }
+  },
+  {
+    path: "/about-us",
+    element: <AboutUs />,
+  },
 ]);
 
 const App: React.FC = () => {

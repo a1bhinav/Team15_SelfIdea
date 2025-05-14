@@ -6,6 +6,7 @@ import cors from "cors";
 import helloRouter from "./routes/helloRouter";
 import pdfRouter from "./routes/pdfRouter";
 import authRouter from "./routes/authRouter";
+import courseRouter from "./routes/courseTemplateRouter";
 
 dotenv.config(); // Load .env file with mongodb secret
 
@@ -26,7 +27,7 @@ app.use(express.urlencoded({ extended: true })); //parse URL-encoded form data
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI as string)
-  .then(() => console.log("Successfully connected to MongoDB!"))
+  .then(() => console.log("Successfully connected to MongDB!"))
   .catch((err) => {
     console.error("MongoDB connection error:", err);
     process.exit(1); // Exit if MongoDB connection fails
@@ -36,6 +37,8 @@ mongoose
 app.use("/api", helloRouter);
 app.use("/api", pdfRouter);
 app.use("/api", authRouter);
+app.use("/api", courseRouter);
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
