@@ -1,6 +1,6 @@
-import { Student } from '../Student';
-import { Course } from '../Course';
-import { CourseTemplate } from '../CourseTemplate';
+import { Student, exampleStudent } from '../Student';
+import { courseExampleDatabase } from '../Course';
+import { CourseTemplate, exampleCourseTemplate } from '../CourseTemplate';
 import { AuthData } from '../AuthData';
 
 describe('Student Class', () => {
@@ -39,33 +39,40 @@ describe('Student Class', () => {
   });
 
   it('should return courses taken', () => {
-    const course1 = new Course('Introduction to Mathematics', 'MATH101', 3);
-    const course2 = new Course('Introduction to Computer Science', 'CS101', 4);
-
-    student.coursesTaken.push(course1, course2);
-    expect(student.getCoursesTaken()).toEqual([course1, course2]);
+    student.coursesTaken.push(courseExampleDatabase[0], courseExampleDatabase[1]);
+    expect(student.getCoursesTaken()).toEqual([courseExampleDatabase[0], courseExampleDatabase[1]]);
   });
 
   it('should return course templates', () => {
-    const courseTemplate = new CourseTemplate('Template 1', []);
-    student.appendCourseTemplate(courseTemplate);
-    expect(student.getCourseTemplates()).toEqual([courseTemplate]);
+    student.appendCourseTemplate(exampleCourseTemplate);
+    expect(student.getCourseTemplates()).toEqual([exampleCourseTemplate]);
   });
 
   it('should append a course template', () => {
-    const courseTemplate = new CourseTemplate('Template 1', []);
-    student.appendCourseTemplate(courseTemplate);
-    expect(student.courseTemplates).toContain(courseTemplate);
+    student.appendCourseTemplate(exampleCourseTemplate);
+    expect(student.courseTemplates).toContain(exampleCourseTemplate);
   });
 
   it('should remove a course template', () => {
-    const courseTemplate1 = new CourseTemplate('Template 1', []);
     const courseTemplate2 = new CourseTemplate('Template 2', []);
-    student.appendCourseTemplate(courseTemplate1);
+    student.appendCourseTemplate(exampleCourseTemplate);
     student.appendCourseTemplate(courseTemplate2);
 
-    student.removeCourseTemplate(courseTemplate1);
-    expect(student.courseTemplates).not.toContain(courseTemplate1);
+    student.removeCourseTemplate(exampleCourseTemplate);
+    expect(student.courseTemplates).not.toContain(exampleCourseTemplate);
     expect(student.courseTemplates).toContain(courseTemplate2);
+  });
+
+  it('should validate the exampleStudent object', () => {
+    expect(exampleStudent.name).toBe('Jane Doe');
+    expect(exampleStudent.email).toBe('jane.doe@example.edu');
+    expect(exampleStudent.spireID).toBe(20202020);
+    expect(exampleStudent.major).toBe('Mathematics');
+    expect(exampleStudent.coursesTaken).toEqual([
+      courseExampleDatabase[0],
+      courseExampleDatabase[1],
+      courseExampleDatabase[2],
+    ]);
+    expect(exampleStudent.courseTemplates).toEqual([exampleCourseTemplate]);
   });
 });
