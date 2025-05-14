@@ -11,12 +11,20 @@ router.get("/course-ids", async (req: Request, res: Response) => {
       await mongoose.connect(process.env.MONGO_URI as string);
     }
 
-    const courses = await CourseModel.find({}, 'id').exec();
-    const courseIds = courses.map(course => course.id);
-    res.json(courseIds);
+    // Fetch courses with id, name, and credits fields
+    // Adjust field names if your CourseModel uses different names (e.g., _id, courseName, courseCredits)
+    const coursesFromDB = await CourseModel.find({}, '_id id name credits').exec();
+    
+    const courseObjects = coursesFromDB.map(course => ({
+      id: course.id || course._id.toString(), // Prefer 'id' if it exists, otherwise use '_id'
+      name: course.name,        // Assuming your model has a 'name' field
+      credits: course.credits    // Assuming your model has a 'credits' field
+    }));
+
+    res.json(courseObjects);
   } catch (error) {
-    console.error("Error fetching course IDs:", error);
-    res.status(500).json({ message: "Failed to fetch course IDs" });
+    console.error("Error fetching course data:", error);
+    res.status(500).json({ message: "Failed to fetch course data" });
   }
 });
 
