@@ -28,7 +28,7 @@ const YourTemplate: React.FC = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/course-ids");
+        const response = await fetch("http://localhost:5000/api/course-ids");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -46,7 +46,7 @@ const YourTemplate: React.FC = () => {
     if (templateId) {
       const fetchTemplate = async () => {
         try {
-          const response = await fetch(`http://localhost:5001/api/student-templates?spireID=20202020`);
+          const response = await fetch(`http://localhost:5000/api/student-templates?spireID=20202020`);
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
@@ -141,7 +141,7 @@ const YourTemplate: React.FC = () => {
       semesters: formattedSemesters,
     };
     try {
-      const response = await fetch("http://localhost:5001/api/append-course-template", {
+      const response = await fetch("http://localhost:500/api/append-course-template", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

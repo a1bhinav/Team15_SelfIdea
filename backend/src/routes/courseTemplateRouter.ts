@@ -136,5 +136,36 @@ router.post("/remove-course-template", async (req: Request, res: Response): Prom
   }
 });
 
+router.get("/student-info", async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { spireID } = req.query;
+
+    if (!spireID) {
+      return res.status(400).json({ message: "spireID query parameter is required" });
+    }
+
+    if (mongoose.connection.readyState !== 1) {
+      await mongoose.connect(process.env.MONGO_URI as string);
+    }
+
+    const student = await StudentModel.findOne({ spireID: spireID as string });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    // Assuming StudentModel has semester, name, and major fields
+    // Adjust field names if your StudentModel uses different names
+    const studentInfo = {
+      name: student.name, // Assuming 'name' field exists
+      major: student.major, // Assuming 'major' field exists
+    };
+
+    return res.json(studentInfo);
+  } catch (error) {
+    console.error("Error fetching student info:", error);
+    return res.status(500).json({ message: "Failed to fetch student info" });
+  }
+});
 
 export default router;

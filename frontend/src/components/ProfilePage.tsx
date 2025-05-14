@@ -53,7 +53,7 @@ const ProfilePage: React.FC = () => {
     } // TODO: Replace with actual student ID from auth or context
 
     try {
-      const response = await fetch("http://localhost:5001/api/remove-course-template", {
+      const response = await fetch("http://localhost:5000/api/remove-course-template", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +83,7 @@ const ProfilePage: React.FC = () => {
     setError(null);
     const studentId = "20202020";
     try {
-      const response = await fetch("http://localhost:5001/api/append-course-template", {
+      const response = await fetch("http://localhost:5000/api/append-course-template", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

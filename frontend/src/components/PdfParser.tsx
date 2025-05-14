@@ -22,7 +22,7 @@ const PDFUploader: React.FC = () => {
 
     // Try-catch to POST the pdf file to the backend
     try {
-      const res = await fetch("http://localhost:5001/api/parse-pdf", {
+      const res = await fetch("http://localhost:5000/api/parse-pdf", {
         method: "POST",
         body: formData,
       });
