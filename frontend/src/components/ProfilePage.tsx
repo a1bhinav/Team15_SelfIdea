@@ -1,8 +1,65 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import "./ProfilePage.css";
 
+interface Template {
+  id: string; // Or number, depending on your backend
+  title: string;
+  description: string;
+}
+
 const ProfilePage: React.FC = () => {
+  const [templates, setTemplates] = useState<Template[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Replace with your actual API endpoint to fetch user-specific templates
+    const fetchTemplates = async () => {
+      try {
+        // Assuming the backend route to get user templates is something like /api/user/templates
+        // You might need to pass user identification (e.g., from auth context or session)
+        // Updated to call /api/student-templates with spireID=20202020
+        const response = await fetch("http://localhost:5000/api/student-templates?spireID=20202020"); 
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setTemplates(data);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred while fetching templates.");
+        }
+        console.error("Failed to fetch templates:", err);
+      }
+    };
+
+    fetchTemplates();
+  }, []);
+
+  const handleRemoveTemplate = async (templateId: string) => {
+    // Replace with your actual API endpoint to remove a template
+    try {
+      // Assuming the backend route is something like /api/templates/:id
+      const response = await fetch(`/api/templates/${templateId}`, { // Placeholder
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      // Remove the template from the local state to update the UI
+      setTemplates(templates.filter((template) => template.id !== templateId));
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred while removing the template.");
+      }
+      console.error("Failed to remove template:", err);
+    }
+  };
+
   return (
     <div className="profile-container">
       <NavBar />
@@ -30,27 +87,24 @@ const ProfilePage: React.FC = () => {
         </div>
 
         <h2 className="saved-templates-title">Saved Templates</h2>
+        {error && <p className="error-message">Error: {error}</p>}
         <div className="saved-templates">
-          <div className="template-card">
-            <h3 className="template-title">Template 1</h3>
-            <p className="template-description">
-              Placeholder for saved template 1.
-            </p>
-          </div>
-
-          <div className="template-card">
-            <h3 className="template-title">Template 2</h3>
-            <p className="template-description">
-              Placeholder for saved template 2.
-            </p>
-          </div>
-
-          <div className="template-card">
-            <h3 className="template-title">Template 3</h3>
-            <p className="template-description">
-              Placeholder for saved template 3.
-            </p>
-          </div>
+          {templates.length > 0 ? (
+            templates.map((template) => (
+              <div key={template.id} className="template-card">
+                <h3 className="template-title">{template.title}</h3>
+                <p className="template-description">{template.description}</p>
+                <button
+                  onClick={() => handleRemoveTemplate(template.id)}
+                  className="remove-template-button"
+                >
+                  Remove
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>No saved templates found.</p>
+          )}
         </div>
 
       </main>
